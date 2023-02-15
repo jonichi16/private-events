@@ -1,9 +1,24 @@
-<h1>Find Your Next Experience</h1>
-
 <% if user_signed_in? %>
   <p> User: <%= current_user.username %> </p>
   <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete } %>
+  <%= link_to "Create Event", new_event_path %>
 <% else %>
   <%= link_to "Sign In", new_user_session_path %>
   <%= link_to "Sign Up", new_user_registration_path %>
 <% end %>
+
+<h1>Find Your Next Experience</h1>
+
+<p>List of Events</p>
+
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      <p><%= event.title %></p>
+      <p><%= event.description %></p>
+      <p><%= event.date_of_event %></p>
+      <p><%= event.location %></p>
+      <p>Created by: <%= event.creator.first_name %> <%= event.creator.last_name %></p>
+    </li>
+  <% end %>
+</ul>
