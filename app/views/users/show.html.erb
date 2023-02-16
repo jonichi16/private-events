@@ -4,19 +4,11 @@
   <%= link_to "Create Event", new_event_path %>
 <% end %>
 
-<%= button_to "Created Events", @user, method: :get, params: { event_type: "created_events" } %>
-<%= button_to "Attending Events", @user, method: :get, params: { event_type: "attending_events" } %>
+<%= button_to "Created Events", @user, method: :get %>
+<%= button_to "Attending Events", @user, method: :get, params: { previous: "true" } %>
 
-<% if params[:event_type] == "created_events" %>
-  <p>List of Created Events</p>
-
-  <ul>
-    <% @user.created_events.each do |event| %>
-      <%= render 'events_list', event: event %>
-    <% end %>
-  </ul>
-<% else %>
-  <p>List of Attending Events</p>
+<% if params[:previous] == "true" %>
+<p>List of Attending Events</p>
   <%= button_to "Upcoming Events", @user, method: :get, params: { date: "upcoming" } %>
   <%= button_to "Previous Events", @user, method: :get, params: { date: "previous" } %>
 
@@ -29,6 +21,14 @@
       <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
         <%= render 'events_list', event: event %>
       <% end %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>List of Created Events</p>
+
+  <ul>
+    <% @user.created_events.each do |event| %>
+      <%= render 'events_list', event: event %>
     <% end %>
   </ul>
 <% end %>
