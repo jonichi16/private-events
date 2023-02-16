@@ -7,3 +7,12 @@
 
 <p>About this event</p>
 <p> <%= @event.description %> </p>
+
+<p>List of Attendees</p>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li>
+      <p><%= attendee.first_name %> <%= attendee.last_name %></p>
+    </li>
+  <% end %>
+</ul>
