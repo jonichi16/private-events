@@ -21,8 +21,10 @@ end
 10.times do |i|
   Event.create(
     title: "Event #{i+1}",
-    description: "Some Event",
-    date_of_event: Time.now + rand(-5..5).day,
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a massa est. Duis sit amet feugiat urna. Quisque at aliquet sapien, at egestas arcu. Nulla egestas ex nibh, eu eleifend ex blandit at. Nullam at condimentum sapien. In hac habitasse platea dictumst. Etiam gravida nisi non volutpat feugiat. Aenean iaculis, ex ac tincidunt dignissim, nisl sem sagittis urna, ac auctor justo justo ut nisl. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque quis varius tellus. Nunc posuere mauris eu erat finibus, ac faucibus arcu cursus. Ut pellentesque magna nisl, ut tincidunt lacus vestibulum et. Suspendisse ultrices vehicula lorem a scelerisque.
+    
+    Duis tempus id lacus vitae pretium. Sed ac sem ipsum. Sed enim augue, molestie feugiat lobortis quis, convallis id ante. In vel ante consectetur, fringilla neque vitae, convallis urna. Nam ante diam, consectetur ac lectus sed, vehicula sodales neque. Curabitur id gravida dolor. Donec ut elit augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam a mi odio. Cras convallis sapien ut turpis tincidunt, ac molestie lorem eleifend. Vestibulum vitae facilisis eros. Proin malesuada pretium faucibus. Fusce nunc metus, posuere eu rutrum id, suscipit et ex. Morbi facilisis fermentum laoreet. Integer ultricies rhoncus neque, quis faucibus felis volutpat vel. Quisque dictum sem nibh, sit amet vehicula neque molestie eget.",
+    date_of_event: Time.now + rand(-5..10).day,
     location: "Somewhere",
     creator_id: rand(0..9)
   )
