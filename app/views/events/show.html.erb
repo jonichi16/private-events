@@ -1,6 +1,6 @@
 <h1><%= @event.title %> </h1>
 <p> <%= @event.creator.first_name %> <%= @event.creator.last_name %> </p>
-<p> <%= @event.date_of_event %> </p>
+<p> <%= @event.date_of_event.strftime('%a, %b %d, %I:%M %p') %> </p>
 <p> <%= @event.location %> </p>
 
 <p> <%= button_to 'Going', attendances_path(id: @event.id), method: :post %> </p>
