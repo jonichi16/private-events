@@ -3,5 +3,7 @@
 <p> <%= @event.date_of_event %> </p>
 <p> <%= @event.location %> </p>
 
+<p> <%= button_to 'Going', attendances_path(attended_event: @event), method: :post %> </p>
+
 <p>About this event</p>
 <p> <%= @event.description %> </p>
