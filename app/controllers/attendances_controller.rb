@@ -1,11 +1,14 @@
 class AttendancesController < ApplicationController
   def create
-    @attended_event = current_user.attendances.build(attended_event_id: params[:attended_event])
+    @event = Event.find(params[:id])
 
-    if @attended_event.save && !current_user.attended_events.includes(@attended_event)
-      redirect_to @attended_event, notice: "Successful"
+    if @event.creator == current_user
+      redirect_to @event, notice: "You create the event"
+    elsif current_user.attended_events.include?(@event)
+      redirect_to @event, alert: "You're already registered"
     else
-      redirect_to @attended_event, alert: "You're already registered"
+      current_user.attended_events << @event
+      redirect_to @event, notice: "Successful"
     end
   end
 end
