@@ -2,4 +2,9 @@
   <p><%= event.title %></p>
   <p><%= event.date_of_event.strftime('%a, %b %d, %I:%M %p') %></p>
   <p><%= event.location %></p>
+
+  <% if @user == current_user %>
+    <p><%= link_to "Edit", edit_event_path(event)%></p>
+    <p><%= button_to "Delete", user_path(event), method: :delete %></p>
+  <% end %>
 </li>
