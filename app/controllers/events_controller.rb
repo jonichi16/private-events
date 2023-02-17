@@ -24,6 +24,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    current_user.attended_events.destroy(@event)
+
+    redirect_to @event, status: :see_other
+  end
+
   private
 
   def event_params
