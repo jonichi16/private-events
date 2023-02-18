@@ -4,26 +4,26 @@
   <%= link_to "Create Event", new_event_path %>
 <% end %>
 
-<%= button_to "Created Events", @user, method: :get %>
-<%= button_to "Attending Events", @user, method: :get, params: { previous: "true" } %>
+<%= button_to "Created Events", @user, method: :get, params: { type: "created" } %>
+<%= button_to "Attending Events", @user, method: :get, params: { type: "attending" } %>
 
-<% if params[:previous] == "true" %>
+<% if params[:type] == "attending" %>
 <p>List of Attending Events</p>
-  <%= button_to "Upcoming Events", @user, method: :get, params: { date: "upcoming" } %>
-  <%= button_to "Previous Events", @user, method: :get, params: { date: "previous" } %>
+  <%= button_to "Upcoming Events", @user, method: :get, params: { type: "attending", upcoming: "true" } %>
+  <%= button_to "Previous Events", @user, method: :get, params: { type: "attending", previous: "true" } %>
 
   <ul>
-    <% if params[:date] == "upcoming" %>
-      <% @user.attended_events.where("date_of_event > ?", Time.now).each do |event| %>
+    <% if params[:type] == "attending" && params[:previous] == "true" %>
+      <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
         <%= render 'events_list', event: event %>
       <% end %>
-    <% else %>
-      <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
+    <% elsif params[:type] == "attending" %>
+      <% @user.attended_events.where("date_of_event > ?", Time.now).each do |event| %>
         <%= render 'events_list', event: event %>
       <% end %>
     <% end %>
   </ul>
-<% else %>
+<% else%>
   <p>List of Created Events</p>
 
   <ul>
