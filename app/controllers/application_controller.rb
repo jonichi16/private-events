@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_in, keys: [:login, :password]
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to new_user_session_path, notice: "You need to sign in or sign up before continuing."
+    end
+  end
 end
