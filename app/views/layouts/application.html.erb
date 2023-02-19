@@ -15,11 +15,34 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <header>
+      <nav class="navbar">
+        <%= render "layouts/header" %>
+      </nav>
+    </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <main>
+      <div class="messages">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <%= yield %>
+    </main>
 
-    <%= yield %>
+    <script>
+      function dropdownClick() {
+        document.getElementById("dropdown-list").classList.toggle("show");
+      }
+
+      window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+          var myDropdown = document.getElementById("dropdown-list");
+            if (myDropdown.classList.contains('show')) {
+              myDropdown.classList.remove('show');
+            }
+          console.log(e.target)
+        }
+      }
+    </script>
   </body>
 </html>

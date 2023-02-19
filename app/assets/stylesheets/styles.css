@@ -1,0 +1,33 @@
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--color-primary-450);
+}
+
+.nav-container {
+  display: flex;
+}
+
+.dropimg {
+  width: 24px;
+}
+
+.dropdown {
+  cursor: pointer;
+  width: 200px;
+}
+
+.dropdown-list {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 1;
+  background-color: var(--color-primary-450);
+}
+
+.show {
+  display: block;
+}
