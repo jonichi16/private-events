@@ -1,12 +1,13 @@
 <div class="nav-container">
-  <p><%= link_to "Private Events", root_path %></p>
+  <p><%= link_to "Private Events", root_path, class: "logo" %></p>
   
   <div class="dropdown" onclick="dropdownClick()">
     <div class="dropbtn">
-      <%= image_tag("dots-vertical.svg", alt: "dropdown", class: "dropimg") %>
+      <%= image_tag("dots-vertical.svg", alt: "dropdown", class: "dropimg dropbtn") %>
     </div>
     <div class="dropdown-list" id="dropdown-list">
       <%= link_to "Upcoming Events", root_path %>
+      <hr width="100%">
       <%= link_to "Previous Events", root_path(previous: "true") %>
     </div>
   </div>

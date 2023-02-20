@@ -11,23 +11,41 @@ a {
   display: flex;
 }
 
+.nav-container a {
+  color: var(--color-text-100);
+  font-size: 1.25rem;
+  padding: 0.5em 0;
+}
+
+.nav-container a:hover:not(.logo) {
+  background-color: var(--color-primary-400);
+}
+
 .dropimg {
   width: 24px;
 }
 
 .dropdown {
   cursor: pointer;
-  width: 200px;
+}
+
+.dropdown-list,
+.show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 1em 1em;
 }
 
 .dropdown-list {
-  display: none;
   position: absolute;
   min-width: 200px;
   z-index: 1;
+  opacity: 0;
   background-color: var(--color-primary-450);
+  transition: opacity 0.3s ease-in;
 }
 
 .show {
-  display: block;
+  opacity: 1;
 }
