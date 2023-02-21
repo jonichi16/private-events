@@ -177,7 +177,8 @@ main {
   font-weight: 700;
 }
 
-.event-title {
+.event-title,
+.show-title {
   font-size: 1.5rem;
   color: var(--color-text-900);
   line-height: 1;
@@ -189,14 +190,77 @@ main {
 
 .event-location {
   color: var(--color-text-600);
-  /* display: inline-block; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.event-creator {
+.event-creator,
+.show-creator {
   font-weight: 700;
+}
+
+.event-show {
+  padding: 2em 0;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.show-creator {
+  font-size: 1.25rem;
+}
+
+.show-title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.date-location {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.date-title,
+.location-title {
+  font-weight: 700;
+  padding-bottom: 0.25em;
+}
+
+.show-date,
+.show-location {
+  color: var(--color-text-600);
+}
+
+.show-description p:first-child {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 1em 0;
+}
+
+.show-attendees p:first-child {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1em 0;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75em 0;
+  color: var(--color-text-100);
+  background-color: var(--color-primary-450);
+  border: none;
+  border-radius: 8px;
+}
+
+.btn:hover {
+  background-color: var(--color-primary-400);
+}
+
+.btn:active {
+  transform: scale(0.9);
 }
 
 @media (min-width: 480px) {
@@ -212,5 +276,12 @@ main {
 
   .event-card {
     padding: 2em 1.5em;
+  }
+
+  .event-show {
+    padding: 3em 0;
+    padding-bottom: 0;
+    max-width: 500px;
+    gap: 2em;
   }
 }
