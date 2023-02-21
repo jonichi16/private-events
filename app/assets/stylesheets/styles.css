@@ -246,6 +246,62 @@ main {
   padding: 1em 0;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0.5em 0;
+}
+
+.field {
+  padding-bottom: 1em;
+  line-height: 2;
+}
+
+.field input {
+  padding: 0 0.5em;
+}
+
+.field textarea {
+  padding: 0.5em;
+  line-height: 1.2;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-title,
+.form-description,
+.form-location {
+  width: 100%;
+}
+
+.form-description {
+  height: 40vh;
+  resize: vertical;
+}
+
+.form-date {
+  max-width: 325px;
+}
+
+.field select {
+  padding: 0.25em 0.5em;
+  margin: 0 0.5em 0.5em 0;
+}
+
+.error-explanation {
+  color: var(--color-danger-500);
+  font-weight: 700;
+}
+
 .btn {
   width: 100%;
   padding: 0.75em 0;
@@ -283,5 +339,12 @@ main {
     padding-bottom: 0;
     max-width: 500px;
     gap: 2em;
+  }
+
+  .form,
+  .page-title {
+    padding: 1em 0;
+    padding-bottom: 0;
+    max-width: 500px;
   }
 }
