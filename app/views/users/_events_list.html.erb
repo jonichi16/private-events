@@ -1,10 +1,18 @@
-<li>
-  <p><%= event.title %></p>
-  <p><%= event.date_of_event.strftime('%a, %b %d, %I:%M %p') %></p>
-  <p><%= event.location %></p>
-
-  <% if @user == current_user %>
-    <p><%= link_to "Edit", edit_event_path(event)%></p>
-    <p><%= button_to "Delete", user_path(event), method: :delete %></p>
-  <% end %>
-</li>
+<div class="event-card">
+  <li>
+    <p class="event-title"><%= event.title %></p>
+    <p class="event-date"><%= event.date_of_event.strftime('%a, %b %d, %I:%M %p') %></p>
+    <p class="event-location"><%= event.location %></p>
+  
+    <% if event.creator == current_user %>
+      <div class="user-event-btn">
+        <div class="btn-edit-event-container">
+          <%= link_to "Edit", edit_event_path(event), class: "btn"%>
+        </div>
+        <div class="btn-delete-event-container">
+          <%= button_to "Delete", user_path(event), method: :delete, class: "btn" %>
+        </div>
+      </div>
+    <% end %>
+  </li>
+</div>

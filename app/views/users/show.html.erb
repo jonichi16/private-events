@@ -1,34 +1,50 @@
-<p> <%= @user.first_name %> <%= @user.last_name %> </p>
+<div class="container user-page">
+  <div class="user-event-type-btn">
+    <div class="event-type-btn">
+      <%= button_to "Created Events", @user, method: :get, params: { type: "created" }, class: "btn" %>
+    </div>
+    <div class="event-type-btn">
+      <%= button_to "Attending Events", @user, method: :get, params: { type: "attending" }, class: "btn" %>
+    </div>
+  </div>
+  <p class="user-name"><%= @user.first_name %> <%= @user.last_name %></p>
+  
+  <div class="btn-create-event-container">
+    <% if @user == current_user %>
+      <%= link_to "Create Event", new_event_path, class: "btn-create-event" %>
+    <% end %>
+  </div>
+  
+  
+  <% if params[:type] == "attending" %>
+    <p class="user-event-header">List of Attending Events:</p>
+    <div class="user-event-type-btn">
+      <div class="event-type-btn">
+        <%= button_to "Upcoming Events", @user, method: :get, params: { type: "attending", upcoming: "true" }, class: "btn" %>
+      </div>
+      <div class="event-type-btn">
+       <%= button_to "Previous Events", @user, method: :get, params: { type: "attending", previous: "true" }, class: "btn" %>
+      </div>
+    </div>
+  
+    <ul>
+      <% if params[:type] == "attending" && params[:previous] == "true" %>
+        <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
+          <%= render 'events_list', event: event %>
+        <% end %>
+      <% elsif params[:type] == "attending" %>
+        <% @user.attended_events.where("date_of_event > ?", Time.now).each do |event| %>
+          <%= render 'events_list', event: event %>
+        <% end %>
+      <% end %>
+    </ul>
+  <% else%>
+    <p class="user-event-header">List of Created Events:</p>
 
-<% if @user == current_user %>
-  <%= link_to "Create Event", new_event_path %>
-<% end %>
-
-<%= button_to "Created Events", @user, method: :get, params: { type: "created" } %>
-<%= button_to "Attending Events", @user, method: :get, params: { type: "attending" } %>
-
-<% if params[:type] == "attending" %>
-<p>List of Attending Events</p>
-  <%= button_to "Upcoming Events", @user, method: :get, params: { type: "attending", upcoming: "true" } %>
-  <%= button_to "Previous Events", @user, method: :get, params: { type: "attending", previous: "true" } %>
-
-  <ul>
-    <% if params[:type] == "attending" && params[:previous] == "true" %>
-      <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
+    <ul class="user-event-lists">
+      <% @user.created_events.each do |event| %>
         <%= render 'events_list', event: event %>
       <% end %>
-    <% elsif params[:type] == "attending" %>
-      <% @user.attended_events.where("date_of_event > ?", Time.now).each do |event| %>
-        <%= render 'events_list', event: event %>
-      <% end %>
-    <% end %>
-  </ul>
-<% else%>
-  <p>List of Created Events</p>
-
-  <ul>
-    <% @user.created_events.each do |event| %>
-      <%= render 'events_list', event: event %>
-    <% end %>
-  </ul>
-<% end %>
+    </ul>
+  <% end %>
+</div>

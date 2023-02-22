@@ -306,6 +306,76 @@ main {
   text-align: center;
 }
 
+.user-event-type-btn {
+  display: flex;
+  gap: 0.5em;
+}
+
+.event-type-btn {
+  flex: 1;
+  padding: 1em 0;
+}
+
+.event-type-btn .btn {
+  padding: 0.5em;
+}
+
+.user-name {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  padding-bottom: 0.5em;
+}
+
+.user-event-header {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1em 0;
+}
+
+.user-event-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.btn-create-event-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1em;
+}
+
+.btn-create-event {
+  width: 75%;
+  padding: 0.5em 0;
+  color: var(--color-primary-450);
+  font-weight: 700;
+  border: 2px solid var(--color-primary-450);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.btn-create-event:hover {
+  color: var(--color-text-100);
+  background-color: var(--color-primary-450);
+}
+
+.user-event-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.btn-edit-event-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 1em;
+}
+
+.user-event-btn .btn {
+  padding: 0.5em 0;
+}
+
 .btn {
   width: 100%;
   padding: 0.75em 0;
@@ -313,13 +383,15 @@ main {
   background-color: var(--color-primary-450);
   border: none;
   border-radius: 8px;
+  text-align: center;
 }
 
 .btn:hover {
   background-color: var(--color-primary-400);
 }
 
-.btn:active {
+.btn:active,
+.btn-create-event:active {
   transform: scale(0.9);
 }
 
@@ -346,7 +418,8 @@ main {
   }
 
   .form,
-  .page-title {
+  .page-title,
+  .user-page {
     padding: 1em 0;
     padding-bottom: 0;
     max-width: 500px;
