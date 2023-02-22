@@ -135,7 +135,7 @@ main {
   line-height: 0.8;
   width: min-content;
   color: var(--color-text-100);
-  z-index: 20;
+  z-index: 15;
 }
 
 .hero-credit {
@@ -468,5 +468,11 @@ main {
 
   .dropdown-list hr {
     display: none;
+  }
+
+  .hero-text {
+    font-size: 5rem;
+    right: 32px;
+    text-align: end;
   }
 }
