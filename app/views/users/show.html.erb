@@ -1,10 +1,10 @@
 <div class="container user-page">
   <div class="user-event-type-btn">
     <div class="event-type-btn">
-      <%= button_to "Created Events", @user, method: :get, params: { type: "created" }, class: "btn" %>
+      <%= button_to "Created Events", @user, method: :get, params: { t: "created" }, class: "btn" %>
     </div>
     <div class="event-type-btn">
-      <%= button_to "Attending Events", @user, method: :get, params: { type: "attending" }, class: "btn" %>
+      <%= button_to "Attending Events", @user, method: :get, params: { t: "attending" }, class: "btn" %>
     </div>
   </div>
   <p class="user-name"><%= @user.first_name %> <%= @user.last_name %></p>
@@ -16,23 +16,23 @@
   </div>
   
   
-  <% if params[:type] == "attending" %>
+  <% if params[:t] == "attending" %>
     <p class="user-event-header">List of Attending Events:</p>
     <div class="user-event-type-btn">
       <div class="event-type-btn">
-        <%= button_to "Upcoming Events", @user, method: :get, params: { type: "attending", upcoming: "true" }, class: "btn" %>
+        <%= button_to "Upcoming Events", @user, method: :get, params: { t: "attending", upcoming: "true" }, class: "btn" %>
       </div>
       <div class="event-type-btn">
-       <%= button_to "Previous Events", @user, method: :get, params: { type: "attending", previous: "true" }, class: "btn" %>
+       <%= button_to "Previous Events", @user, method: :get, params: { t: "attending", p: "true" }, class: "btn" %>
       </div>
     </div>
   
-    <ul>
-      <% if params[:type] == "attending" && params[:previous] == "true" %>
+    <ul class="user-event-lists">
+      <% if params[:t] == "attending" && params[:p] == "true" %>
         <% @user.attended_events.where("date_of_event < ?", Time.now).each do |event| %>
           <%= render 'events_list', event: event %>
         <% end %>
-      <% elsif params[:type] == "attending" %>
+      <% elsif params[:t] == "attending" %>
         <% @user.attended_events.where("date_of_event > ?", Time.now).each do |event| %>
           <%= render 'events_list', event: event %>
         <% end %>
