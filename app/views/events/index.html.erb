@@ -1,17 +1,21 @@
-<h1>Find Your Next Experience</h1>
+<%= render 'hero' %>
 
 <% if params[:previous] == "true" %>
-  <p>List of Previous Events</p>
-  <ul>
-    <% @past_events.each do |event| %>
-      <%= render 'list_of_events', event: event %>
-    <% end %>
-  </ul>
+  <div class="container">
+    <p class="event-lists-header">List of Previous Events</p>
+    <ul class="grid">
+      <% @past_events.each do |event| %>
+        <%= render 'list_of_events', event: event %>
+      <% end %>
+    </ul>
+  </div>
 <% else %>
-  <p>List of Upcoming Events</p>
-  <ul>
-    <% @upcoming_events.each do |event| %>
-      <%= render 'list_of_events', event: event %>
-    <% end %>
-  </ul>
+  <div class="container">
+    <p class="event-lists-header">List of Upcoming Events</p>
+    <ul class="grid">
+      <% @upcoming_events.each do |event| %>
+        <%= render 'list_of_events', event: event %>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

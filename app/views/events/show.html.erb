@@ -1,22 +1,40 @@
-<h1><%= @event.title %> </h1>
-<p> <%= @event.creator.first_name %> <%= @event.creator.last_name %> </p>
-<p> <%= @event.date_of_event.strftime('%a, %b %d, %I:%M %p') %> </p>
-<p> <%= @event.location %> </p>
-
-<% if current_user && current_user.attended_events.include?(@event) %>
-  <p> <%= button_to 'Cancel', event_path(@event, @attendance), method: :delete %> </p>
-<% else %>
-  <p> <%= button_to 'Going', attendances_path(id: @event.id), method: :post %> </p>
-<% end %>
-
-<p>About this event</p>
-<p> <%= simple_format(@event.description) %> </p>
-
-<p>List of Attendees</p>
-<ul>
-  <% @event.attendees.each do |attendee| %>
-    <li>
-      <p><%= attendee.first_name %> <%= attendee.last_name %></p>
-    </li>
+<div class="event-show container">
+  <h1 class="show-title"><%= @event.title %> </h1>
+  <p class="show-creator"><%= @event.creator.first_name %> <%= @event.creator.last_name %></p>
+  <div class="date-location">
+    <div class="date">
+      <p class="date-title">Date and Time</p>
+      <p class="show-date"><%= @event.date_of_event.strftime('%a, %b %d, %I:%M %p') %></p>
+    </div>
+    <div class="location">
+      <p class="location-title">Location</p>
+      <p class="show-location"><%= @event.location %></p>
+    </div>
+  </div>
+  
+  <% if current_user && current_user.attended_events.include?(@event) %>
+    <%= button_to 'Cancel', event_path(@event, @attendance), method: :delete, class: "btn" %> 
+  <% else %>
+    <%= button_to 'Going', attendances_path(id: @event.id), method: :post, class: "btn" %> 
   <% end %>
-</ul>
+  
+  <div class="show-description">
+    <p>About this event</p>
+    <%= simple_format(@event.description) %>
+  </div>
+  
+  <div class="show-attendees">
+    <p>List of Attendees:</p>
+    <% if !@event.attendees.empty? %>
+      <ul>
+        <% @event.attendees.each do |attendee| %>
+            <li>
+              <%= attendee.first_name %> <%= attendee.last_name %></p>
+            </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No Attendee Available <%= "\u2639" %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,8 @@
-<li>
-  <p><%= link_to event.title, event %></p>
-  <p><%= event.date_of_event.strftime('%a, %b %-d, %I:%M %p') %></p>
-  <p><%= event.location %></p>
-  <p>Created by: <%= event.creator.first_name %> <%= event.creator.last_name %></p>
-</li>
+<div class="event-card">
+  <li>
+    <p><%= link_to event.title, event, class: "event-title" %></p>
+    <p><%= link_to event.date_of_event.strftime('%a, %b %-d, %I:%M %p'), event, class: "event-date" %></p>
+    <p class="event-location"><%= event.location %></p>
+    <p class="event-creator"><%= event.creator.first_name %> <%= event.creator.last_name %></p>
+  </li>
+</div>

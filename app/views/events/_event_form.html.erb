@@ -1,27 +1,41 @@
-<%= form_with model: event do |form| %>
-  <div class="field">
-    <%= form.label :title %><br>
-    <%= form.text_field :title %><br>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %><br>
-    <%= form.text_area :description %><br>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_of_event %><br>
-    <%= form.datetime_select :date_of_event, ampm: true , minute_step: 30 %><br>
-  </div>
-
-  <div class="field">
-    <%= form.label :location %><br>
-    <%= form.text_field :location %><br>
-  </div><br>
-
-  <div class="action">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<%= link_to "Back", :back %>
+<div class="container form">
+  <%= form_with model: event do |form| %>
+    <div class="field">
+      <%= form.label :title, class: "form-label" %>
+      <%= form.text_field :title, class: "form-title" %>
+      <% event.errors.full_messages_for(:title).each do |msg| %>
+        <div class="error-explanation">* <%= msg %> </div>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-description" %>
+      <% event.errors.full_messages_for(:description).each do |msg| %>
+        <div class="error-explanation">* <%= msg %> </div>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :date_of_event, class: "form-label" %>
+      <div class="form-date">
+        <%= form.datetime_select :date_of_event, ampm: true , minute_step: 30 %>
+      </div>
+      <% event.errors.full_messages_for(:date_of_event).each do |msg| %>
+        <div class="error-explanation">* <%= msg %> </div>
+      <% end %>
+    </div>
+  
+    <div class="field">
+      <%= form.label :location, class: "form-label" %>
+      <%= form.text_field :location, class: "form-location" %>
+      <% event.errors.full_messages_for(:location).each do |msg| %>
+        <div class="error-explanation">* <%= msg %> </div>
+      <% end %>
+    </div>
+  
+    <div class="action">
+      <%= form.submit "Create Event", class: "btn" %>
+    </div>
+  <% end %>
+</div>
