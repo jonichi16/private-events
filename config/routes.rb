@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :destroy]
   resources :attendances
   root 'events#index'
+
+  get "/healthcheck", to: proc { [200, {}, ["success"]] }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
